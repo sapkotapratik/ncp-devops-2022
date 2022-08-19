@@ -1,0 +1,58 @@
+name: 'Azure RG Creation'
+ 
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+ 
+jobs:
+  
+  terraform:
+
+    name: 'Terraform'
+    #Checking if repository name is correct.
+    
+    if: github.repository == 'sapkotapratik/ncp-devops-2022'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+    runs-on: ubuntu-latest
+    
+    environment: production
+ 
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+   
+
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+
+    
+      
+ 
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      
+    - name: Terraform Format
+      run: terraform fmt
+
+    - name: Terraform Init
+      run: terraform init
+      
+    - name: Terraform Validate
+      run: terraform validate
+      
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
