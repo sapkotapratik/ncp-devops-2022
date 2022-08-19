@@ -12,7 +12,7 @@ terraform {
     resource_group_name  = "pratik-demo-resource-group"
     storage_account_name = "tfstate0029"
     container_name       = "tfstate"
-    key                  = "dev.terraform.tfstate2"
+    key                  = "dev.terraform.tfstatencp"
   }
 }
 
