@@ -7,14 +7,14 @@ terraform {
   }
 }
 
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "pratik-demo-resource-group"
-    storage_account_name = "tfstate0029"
-    container_name       = "tfstate"
-    key                  = "dev.terraform.tfstatencp"
-  }
-}
+# terraform {
+#   backend "azurerm" {
+#     resource_group_name  = "pratik-demo-resource-group"
+#     storage_account_name = "tfstate0029"
+#     container_name       = "tfstate"
+#     key                  = "dev.terraform.tfstatencp"
+#   }
+# }
 
 provider "azurerm" {
   features {
@@ -23,7 +23,7 @@ provider "azurerm" {
 }
 resource "azurerm_resource_group" "example" {
 
-  name = "ncp-devops-test"
+  name = "ncp-devops-test1"
 
   location = "centralindia"
 }
