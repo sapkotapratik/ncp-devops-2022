@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.8.0"
+      version = "3.0.2"
     }
   }
 }
@@ -24,7 +24,7 @@ provider "azurerm" {
 # Create a resource group
 resource "azurerm_resource_group" "example" {
 
-  name = "ncp-devops-2022"
+  name = "github-certificate-test"
 
   location = "centralindia"
 }
