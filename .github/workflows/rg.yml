@@ -16,9 +16,9 @@ jobs:
     if: github.repository == 'sapkotapratik/ncp-devops-2022'
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_ARM_CLIENT_CERTIFICATE_PATH: ${{ secrets.ARM_CLIENT_CERTIFICATE_PATH}}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      ARM_CLIENT_CERTIFICATE_PASSWORD: ${{ secrets.ARM_CLIENT_CERTIFICATE_PASSWORD }}
     runs-on: ubuntu-latest
     
     environment: prod
