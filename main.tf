@@ -24,7 +24,7 @@ provider "azurerm" {
 # Create a resource group
 resource "azurerm_resource_group" "example" {
 
-  name = "github-certificate-test"
+  name = "github-certificate-link"
 
   location = "centralindia"
 }
