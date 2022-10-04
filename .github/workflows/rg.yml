@@ -39,12 +39,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
-    - uses: Azure/login@v1
+    - name: Login to Azure
+      uses: Azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - uses: Azure/get-keyvault-secrets@v1
       with: 
-        keyvault: "containervault"
+        keyvault: "github-certificate"
         secrets: 'ga-secrets'
       id: myGetSecretAction
       
