@@ -16,9 +16,9 @@ jobs:
     if: github.repository == 'sapkotapratik/ncp-devops-2022'
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_ARM_CLIENT_CERTIFICATE_PATH: ${{ secrets.ARM_CLIENT_CERTIFICATE_PATH}}
+      ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secrets }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      ARM_CLIENT_CERTIFICATE_PASSWORD: ${{ secrets.ARM_CLIENT_CERTIFICATE_PASSWORD }}
     runs-on: ubuntu-latest
     
     environment: prod
@@ -38,6 +38,15 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
+      
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: Azure/get-keyvault-secrets@v1
+      with: 
+        keyvault: "containervault"
+        secrets: 'ga-secrets'
+      id: myGetSecretAction
       
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
