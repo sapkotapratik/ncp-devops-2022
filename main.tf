@@ -18,17 +18,17 @@ terraform {
 
 provider "azurerm" {
   features {
-    ARM_CLIENT_ID= ${{ secrets.AZURE_AD_CLIENT_ID }}
-    ARM_CLIENT_SECRET=  ${{ steps.myGetSecretAction.outputs.ga-secret }}
-    ARM_SUBSCRIPTION_ID= ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    ARM_TENANT_ID= ${{ secrets.AZURE_AD_TENANT_ID }}
+    client_id= ${{ secrets.AZURE_AD_CLIENT_ID }}
+    client_secret=  ${{ steps.myGetSecretAction.outputs.ga-secret }}
+    subscription_id= ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    tenant_id= ${{ secrets.AZURE_AD_TENANT_ID }}
 
   }
 }
 # Create a resource group
 resource "azurerm_resource_group" "example" {
 
-  name = "github-certificate-link"
+  name = "github-certificate-link-007"
 
   location = "centralindia"
 }
