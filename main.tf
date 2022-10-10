@@ -18,10 +18,7 @@ terraform {
 
 provider "azurerm" {
   features {
-    client_id= ${{ secrets.AZURE_AD_CLIENT_ID }}
-    client_secret=  ${{ steps.myGetSecretAction.outputs.ga-secret }}
-    subscription_id= ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    tenant_id= ${{ secrets.AZURE_AD_TENANT_ID }}
+   
 
   }
 }
