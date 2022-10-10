@@ -52,11 +52,11 @@ jobs:
       
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+#       with:
+#         ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+#         ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+#         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#         ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       
       
     - name: Terraform Format
@@ -67,9 +67,14 @@ jobs:
       
     - name: Terraform Validate
       run: terraform validate
+    - name: terraform-plan
+      uses: dflook/terraform-plan@v1.25.0
+      with:
+        ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       
-    - name: Terraform Plan
-      run: terraform plan
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
