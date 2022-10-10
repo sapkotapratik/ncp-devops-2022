@@ -40,11 +40,15 @@ jobs:
       uses: actions/checkout@v3
       
     - name: 'Azure Login using OIDC'
-      uses: azure/login@v1
+      uses: Azure/login@v1
       with:
         client-id: ${{ secrets.secrets.AZURE_AD_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         subscription-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+        
+    - name: 'Run az commands'
+      run: |
+        az account show
     
     - uses: Azure/get-keyvault-secrets@v1
       with: 
@@ -52,43 +56,43 @@ jobs:
         secrets: 'ga-secret'
       id: myGetSecretAction
       
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-#       with:
-#         ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-#         ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
-#         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-#         ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+#     - name: Setup Terraform
+#       uses: hashicorp/setup-terraform@v2
+# #       with:
+# #         ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+# #         ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+# #         ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+# #         ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       
       
-    - name: Terraform Format
-      run: terraform fmt
+#     - name: Terraform Format
+#       run: terraform fmt
 
-    - name: Terraform Init
-      run: terraform init
+#     - name: Terraform Init
+#       run: terraform init
       
-    - name: Terraform Validate
-      run: terraform validate
+#     - name: Terraform Validate
+#       run: terraform validate
       
  
 
       
-    - name: terraform-plan
-      run: terraform plan
-      continue-on-error: true
-      env:
-       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-       ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
-       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+#     - name: terraform-plan
+#       run: terraform plan
+#       continue-on-error: true
+#       env:
+#        ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+#        ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+#        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#        ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
   
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      continue-on-error: true
-      env:
-       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-       ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
-       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+#     - name: Terraform Apply
+#       run: terraform apply -auto-approve
+#       continue-on-error: true
+#       env:
+#        ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+#        ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+#        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#        ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       
