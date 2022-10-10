@@ -1,10 +1,11 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "3.0.2"
-    }
-  }
+provider "azurerm" {
+  features {}
+  use_oidc = true
+}
+
+resource "azurerm_resource_group" "oidc" {
+  name     = var.resource_group_name
+  location = var.location
 }
 
 # terraform {
@@ -16,17 +17,17 @@ terraform {
 #   }
 # }
 
-provider "azurerm" {
-  features {}
-  use_oidc = true
-}
-# Create a resource group
-resource "azurerm_resource_group" "example" {
+# provider "azurerm" {
+#   features {}
+#   use_oidc = true
+# }
+# # Create a resource group
+# resource "azurerm_resource_group" "example" {
 
-  name = "github-oidc-auth-007"
+#   name = "github-oidc-auth-007"
 
-  location = "centralindia"
-}
+#   location = "centralindia"
+# }
 
 # # Create a virtual network within the resource group
 # resource "azurerm_virtual_network" "example" {
