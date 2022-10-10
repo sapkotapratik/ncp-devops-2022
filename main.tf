@@ -17,15 +17,13 @@ terraform {
 # }
 
 provider "azurerm" {
-  features {
-   
-
-  }
+  features {}
+  use_oidc = true
 }
 # Create a resource group
 resource "azurerm_resource_group" "example" {
 
-  name = "github-certificate-link-007"
+  name = "github-oidc-auth"
 
   location = "centralindia"
 }
