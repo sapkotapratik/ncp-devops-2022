@@ -9,7 +9,7 @@ defaults:
 jobs:
   build:
     name:   Matrix Build
-    runs-on: [ '${{ matrix.runner }}']
+    runs-on: macos-latest
     strategy:
       max-parallel: 1
       matrix:
