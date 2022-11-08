@@ -8,8 +8,8 @@ defaults:
     shell: bash
 jobs:
   build:
-    name:   ${{matrix.runner}} - ${{ matrix.environment }}
-    runs-on: [ '${{ matrix.runner }}']
+    name:   Matrix Build
+#     runs-on: [ '${{ matrix.runner }}']
     strategy:
       max-parallel: 1
       matrix:
