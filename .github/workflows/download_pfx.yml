@@ -1,10 +1,11 @@
 name: 'Check pfx download path'
  
 on:
-  push:
-    branches:
-    - feature/pratik/test
-  pull_request:
+  workflow_dispatch:
+#   push:
+#     branches:
+#     - feature/pratik/test
+#   pull_request:
  
 jobs:
   
