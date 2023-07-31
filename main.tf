@@ -1,13 +1,29 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>2.0"
+    }
+  }
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "pratiksapkota"
+
+    workspaces {
+      name = "tfc_oidc_tes"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
-  use_oidc = true
 }
 
-resource "azurerm_resource_group" "oidc" {
-  name     = var.resource_group_name
-  location = var.location
+resource "azurerm_resource_group" "rg" {
+  name     = "MyResourceGroup"
+  location = "West Europe"
 }
-
 # terraform {
 #   backend "azurerm" {
 #     resource_group_name  = "pratik-demo-resource-group"
