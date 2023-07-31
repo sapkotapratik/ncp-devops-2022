@@ -1,0 +1,31 @@
+name: RG DEPLOY
+
+on: 
+ workflow_dispatch:
+
+jobs:
+
+  terraform:
+    name: Terraform   
+    runs-on: ubuntu-latest  
+    env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+
+    steps:       
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform init
+      
+    - name: Terraform Plan    
+      run: terraform plan
+
+    - name: Terraform Apply
+      run: terraform apply
+  
+
+
