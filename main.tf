@@ -1,19 +1,17 @@
 terraform {
-  required_providers {
+    cloud {
+        organization = "pratiksapkota" /// replace with your organization name
+        workspaces {
+          name = "pratikaugust" /// replace with your workspace name
+        }
+      }
+   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~>2.0"
     }
   }
 
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "pratiksapkota"
-
-    workspaces {
-      name = "tfc_oidc_tes"
-    }
-  }
 }
 
 provider "azurerm" {
@@ -33,7 +31,6 @@ resource "azurerm_resource_group" "rg" {
 #   }
 # }
 
-# provider "azurerm" {
 #   features {}
 #   use_oidc = true
 # }
