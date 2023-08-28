@@ -1,0 +1,53 @@
+name: 'Check pfx download path'
+ 
+on:
+  workflow_dispatch:
+#   push:
+#     branches:
+#     - feature/pratik/test
+#   pull_request:
+ 
+jobs:
+  
+  terraform:
+
+    name: 'Terraform'
+    #Checking if repository name is correct.
+    
+    if: github.repository == 'sapkotapratik/ncp-devops-2022'
+#     env:
+#       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+#       ARM_CLIENT_SECRET: ${{ steps.myGetSecretAction.outputs.ga-secret }}
+#       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+    runs-on: ubuntu-latest
+    
+    environment: prod
+ 
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+   
+
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+
+    
+      
+ 
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: 'Azure Login'
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: 'KeyVault Certificate'
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az keyvault certificate download --vault-name  github-certificate --name github-auth --file TF_DEMO_SPN_002.pfx
