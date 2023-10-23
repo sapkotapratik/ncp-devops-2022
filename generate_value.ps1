@@ -8,7 +8,7 @@ $myout = [PSCustomObject]@{
     SynapseWorkspaceName = $SynapseWorkspace.Name
 }
 
-Write-Verbose $myout -Verbose
+Write-Output $myout
 
 if ($myout)
 {
