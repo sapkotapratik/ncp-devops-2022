@@ -16,10 +16,12 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true 
 
     - name: Execute PowerShell script
-      shell: pwsh
-      run: |
-        .\generate_value.ps1
+      uses: azure/powershell@v1
+      with:
+        inlineScript: ./generate_value.ps1
+        azPSVersion: "latest"
 
 
