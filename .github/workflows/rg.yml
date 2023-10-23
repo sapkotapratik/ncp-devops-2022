@@ -7,7 +7,7 @@ on:
 
 jobs:
   run_powershell:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -17,9 +17,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Install PowerShell
-      uses: actions/setup-powershell@v1
-
     - name: Execute PowerShell script
-      run: pwsh -File ./generate_value.ps1
+      uses: dawidd6/action-powershell@v2
+      with:
+        script: .\generate_value.ps1
+
 
