@@ -24,4 +24,11 @@ jobs:
         inlineScript: ./generate_value.ps1
         azPSVersion: "latest"
 
+    - name: worskpaceName output
+      uses: azure/powershell@v1
+      with:
+          inlineScript: ./workspacename.ps1 -verbose `
+            -WorkSpaceName ${{ env.SynapseWorkspaceName }} 
+          azPSVersion: "latest"
+
 
