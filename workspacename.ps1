@@ -2,7 +2,7 @@ param (
     # WorkSpaceName
     [Parameter(Mandatory = $true)]
     [ValidateNotNullOrEmpty()]
-    [string] $WorkSpaceName
+    [System.String] $WorkSpaceName
 )
 
 Write-Output "The WorkspaceName is: $WorkSpaceName"
