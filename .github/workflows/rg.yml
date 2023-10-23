@@ -18,8 +18,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Execute PowerShell script
-      uses: dawidd6/action-powershell@v2
-      with:
-        script: .\generate_value.ps1
+      shell: pwsh
+      run: |
+        .\generate_value.ps1
 
 
