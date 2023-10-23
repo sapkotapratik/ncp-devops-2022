@@ -12,9 +12,9 @@ Write-Output $myout
 
 if ($myout)
 {
-    $myout | Get-Member -MemberType NoteProperty | ForEach-Object {
-        "$($_.Name)=$($myout.$($_.Name))"
-    } | Out-File -FilePath $Env:GITHUB_ENV -Append
+     $myout_json = ConvertTo-Json -InputObject $myout -Compress
+   Write-Host "Debug: $myout_json"
+   "Synpase_workspace_List=$myout_json" | Out-File -FilePath $Env:GITHUB_ENV -Append
 }
 else
 {
